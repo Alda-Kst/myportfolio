@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- ================= CSS ================= -->
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #e0e7f0 0%, #d1d9f0 100%);
+    color: #333;
+    scroll-behavior: smooth;
+  }
+  a { text-decoration: none; }
+  
+  body.option1 {
+  background: linear-gradient(180deg, #cfd8e3 0%, #e0e7f0 100%);
+}
+
+  header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    background-color: #1f2937;
+    color: white;
+  }
+
+  header h1 { margin: 0; font-size: 2.5em; }
+  header p { font-size: 1.2em; margin-top: 10px; color: #e5e7eb; }
+
+  .portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 50px 15px 60px;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  /* ================= PROJECT & SKILL CARDS ================= */
+.project-card, .skill-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  /* Scroll animation initial state */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.project-card:hover, .skill-card:hover {
+  transform: translateY(-7px) scale(1.05); /* slightly bigger lift */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2); /* softer, deeper shadow */
+  border: 1px solid #3b82f6;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease, filter 0.3s ease;
+  filter: brightness(1.05); /* subtle glow effect */
+}
+
+  
+
+  .project-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .project-card img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+  }
+
+  .project-card h3, .skill-card h3 { margin: 15px 0 5px; color: #111827; }
+  .project-card p, .skill-card p { margin: 0 15px 15px; font-size: 1em; color: #4b5563; }
+
+  .tags span {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 0.75em;
+    margin: 2px;
+  }
+
+  .project-card a.github-link, .skill-card a.github-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+  }
+  .project-card a.github-link:hover, .skill-card a.github-link:hover { background-color: #2563eb; }
+
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    background: linear-gradient(135deg, #d1d9f0 0%, #e0e7f0 100%);
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 1.1em;
+    font-style: italic;
+    animation: pulse 2s infinite;
+  }
+  .currently-learning {
+  padding: 40px 20px;         /* space inside the section */
+  border-bottom: 1px solid #e5e7eb;  /* subtle separator line */
+  margin-bottom: 40px;        /* space below section */
+  opacity: 0;                  /* for scroll fade-in */
+  transform: translateY(20px); /* for scroll fade-in */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+  footer {
+  padding: 50px 20px;          /* space inside the footer */
+  opacity: 0;                  /* for scroll fade-in */
+  transform: translateY(20px); /* for scroll fade-in */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+  .currently-learning, footer {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  /* ================= MOBILE & TABLET RESPONSIVE ================= */
+
+/* Small tablets and large phones */
+@media (max-width: 900px) {
+  .portfolio {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 30px 15px;
+  }
+
+  .project-card img {
+    height: 220px;
+  }
+
+  .currently-learning h2 {
+    font-size: 1.7em;
+  }
+
+  header h1 {
+    font-size: 2.2em;
+  }
+
+  header p {
+    font-size: 1.1em;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .portfolio {
+    grid-template-columns: 1fr;
+    padding: 20px 10px;
+  }
+
+  .project-card img {
+    height: 180px;
+  }
+
+  .project-card p, .skill-card p {
+    font-size: 0.9em;
+    margin: 0 10px 12px;
+  }
+
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+
+  .currently-learning h2 {
+    font-size: 1.5em;
+  }
+
+  .currently-learning p {
+    font-size: 0.95em;
+  }
+}
+/* ================= ABOUT ME ================= */
+.about-me {
+  max-width: 900px;
+  margin: 40px auto 50px;
+  padding: 0 20px;
+  text-align: center;
+  opacity: 0;           /* initial hidden */
+  transform: translateY(20px); /* initial offset */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.about-me h2 {
+  font-size: 2em;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.about-me p {
+  font-size: 1.05em;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  .about-me h2, .currently-learning h2 {
+    font-size: 1.5em;
+  }
+  .about-me p, .currently-learning p {
+    font-size: 0.95em;
+  }
+}
+
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .project-card img {
+    height: 150px;
+  }
+
+  .currently-learning h2 {
+    font-size: 1.3em;
+  }
+
+  .currently-learning p {
+    font-size: 0.9em;
+  }
+}
+
+  .currently-learning {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #f8fafc;
+  }
+  .currently-learning h2 {
+    font-size: 1.9em;
+    color: #111827;
+    margin-bottom: 10px;
+  }
+  .currently-learning p {
+    font-size: 1.05em;
+    color: #4b5563;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #1f2937;
+    color: white;
+    font-size: 0.9em;
+    border-top: 3px solid #3b82f6;
+  }
+  footer a { color: #fbbf24; margin: 0 8px; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body class="option1">
+<!-- ================= HEADER ================= -->
+<header>
+  <h1>My Portfolio</h1>
+  <p>Projects showcasing my skills in web development and programming</p>
+</header>
+
+<!-- ================= ABOUT ME ================= -->
+<section class="about-me">
+  <h2>About Me</h2>
+  <p>Bachelor in Computer Science. Passionate about full-stack development, and UI/UX design. Continuously building projects to sharpen my skills and explore new technologies.</p>
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+<section class="portfolio">
+  <!-- Project Card 1 -->
+  <div class="project-card">
+    <img src="images/netflix-clone.png" alt="Netflix Clone Screenshot">
+    <div class="tags"><span>React</span><span>API</span></div>
+    <h3>Netflix Clone</h3>
+    <p>React app fetching movie data from TMDB API. Responsive layout and interactive UI.<br><em>Live version coming soon</em></p>
+    <a class="github-link" href="https://github.com/Alda-Kst/netflix-clone" target="_blank">View on GitHub</a>
+  </div>
+
+  <!-- Project Card 2 -->
+  <div class="project-card">
+    <img src="images/movie-search.png" alt="Movie Search App Screenshot">
+    <div class="tags"><span>JS</span><span>HTML/CSS</span></div>
+    <h3>Movie Search App</h3>
+    <p>Search movies by title and view details. Built with HTML, CSS, and JS.<br><em>Live version coming soon</em></p>
+    <a class="github-link" href="https://github.com/Alda-Kst/MovieSearch?tab=readme-ov-file" target="_blank">View on GitHub</a>
+  </div>
+
+  <!-- Project Card 3 -->
+  <div class="project-card">
+    <img src="images/weather-app.png" alt="Weather App Screenshot">
+    <div class="tags"><span>JS</span><span>API</span></div>
+    <h3>Weather App</h3>
+    <p>Shows current weather and forecast for cities. Built with HTML, CSS, and JS.<br><em>Live version coming soon</em></p>
+    <a class="github-link" href="https://github.com/Alda-Kst/react-weather-app?tab=readme-ov-file" target="_blank">View on GitHub</a>
+  </div>
+
+  <!-- Project Card 4 -->
+  <div class="project-card">
+    <img src="images/calculator-app.png" alt="Calculator App Screenshot">
+    <div class="tags"><span>JS</span><span>HTML/CSS</span></div>
+    <h3>Calculator App</h3>
+    <p>Simple calculator for basic arithmetic operations. Built with HTML, CSS, and JS.<br><em>Live version coming soon</em></p>
+    <a class="github-link" href="https://github.com/Alda-Kst/calculator-app" target="_blank">View on GitHub</a>
+  </div>
+
+  <!-- Project Card 5 -->
+  <div class="project-card">
+    <img src="images/keeper-app.png" alt="Keeper App Screenshot">
+    <div class="tags"><span>JS</span><span>HTML/CSS</span></div>
+    <h3>Keeper App</h3>
+    <p>Note-taking app with local storage. Built with HTML, CSS, and JS.<br><em>Live version coming soon</em></p>
+    <a class="github-link" href="https://github.com/Alda-Kst/Keeper" target="_blank">View on GitHub</a>
+  </div>
+
+  <!-- Project Card 6 (Placeholder) -->
+  <div class="project-card">
+    <div class="placeholder">E-Commerce App – UI redesign coming soon</div>
+    <h3>E-Commerce App</h3>
+    <p>Project in progress. New UI and features will be added soon.</p>
+  </div>
+</section>
+ <!-- ================= SKILLS ================= -->
+<section class="portfolio skills-portfolio">
+
+  <!-- Programming Languages -->
+  <div class="skill-card">
+    <h3><i class="fas fa-code" style="color:#3b82f6;"></i> Programming Languages</h3>
+    <p>JavaScript (advanced), Java, C</p>
+  </div>
+
+  <!-- Spoken Languages -->
+  <div class="skill-card">
+    <h3><i class="fas fa-language" style="color:#10b981;"></i> Spoken Languages</h3>
+    <p>Greek & Albanian (native), English(fluent), basic knowledge of Dutch & French</p>
+  </div>
+
+  <!-- Frontend -->
+  <div class="skill-card">
+    <h3><i class="fas fa-desktop" style="color:#10b981;"></i> Frontend</h3>
+    <p>React, React Router, Hooks, HTML5, CSS3, TailwindCSS, Bootstrap, DOM Manipulation, jQuery</p>
+  </div>
+
+  <!-- Backend -->
+  <div class="skill-card">
+    <h3><i class="fas fa-server" style="color:#f59e0b;"></i> Backend</h3>
+    <p>Node.js, Express.js, Controllers, Middleware, EJS, REST APIs, Authentication & Authorization</p>
+  </div>
+
+  <!-- Databases -->
+  <div class="skill-card">
+    <h3><i class="fas fa-database" style="color:#ef4444;"></i> Databases</h3>
+    <p>PostgreSQL, MongoDB</p>
+  </div>
+
+  <!-- Tools & Others -->
+  <div class="skill-card">
+    <h3><i class="fas fa-tools" style="color:#8b5cf6;"></i> Tools & Others</h3>
+    <p>Git, npm, Postman, HTTP requests</p>
+  </div>
+
+</section>
+
+<!-- ================= CURRENTLY LEARNING ================= -->
+<section class="currently-learning">
+  <h2>Currently Learning</h2>
+  <p>Continuously improving UI/UX design skills and exploring advanced React patterns, state management, and full-stack development concepts.</p>
+</section>
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2025 Alda Kosta. All rights reserved.</p>
+  <p>
+    <a href="https://github.com/Alda-Kst" target="_blank"> <i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://www.linkedin.com/in/alda-kosta/" target="_blank"> <i class="fab fa-linkedin"></i> LinkedIn</a> |
+   <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aldakosta.work@gmail.com" target="_blank">
+  <i class="fas fa-envelope"></i>
+  Email
+  </a>
+
+
+  </p>
+</footer>
+ 
+<!-- ================= SCROLL ANIMATIONS WITH STAGGER ================= -->
+<script>
+  const cards = document.querySelectorAll('.project-card, .skill-card');
+
+  function revealCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    cards.forEach((card, index) => {
+      const cardTop = card.getBoundingClientRect().top;
+      if(cardTop < triggerBottom){
+        // Add a stagger delay based on index
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 150); // 150ms delay between each card
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealCards);
+  window.addEventListener('load', revealCards);
+</script>
+
+<!-- ================= SCROLL ANIMATION FOR  LEARNING & FOOTER ================= -->
+<script>
+  const fadeSections = document.querySelectorAll('.currently-learning, footer');
+
+  function revealSections() {
+    const triggerBottom = window.innerHeight * 0.9;
+
+    fadeSections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if(sectionTop < triggerBottom){
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('load', revealSections);
+</script>
+
+<!--About Me scroll animation -->
+<script>
+  const aboutMe = document.querySelector('.about-me');
+
+  function revealAboutMe() {
+    const triggerBottom = window.innerHeight * 0.85;
+    const sectionTop = aboutMe.getBoundingClientRect().top;
+    if(sectionTop < triggerBottom){
+      aboutMe.style.opacity = '1';
+      aboutMe.style.transform = 'translateY(0)';
+    }
+  }
+
+  window.addEventListener('scroll', revealAboutMe);
+  window.addEventListener('load', revealAboutMe);
+</script>
+</body>
+</html>
+
+
+</body>
+
+</html>
