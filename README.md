@@ -1,9 +1,14 @@
-<<<<<<< HEAD
- ## Live Demo: https://alda-kst.github.io/myportfolio/
-=======
 # Portfolio | Alda Kosta
 
 A modern, responsive portfolio website built with HTML5, CSS3, and JavaScript.
+
+## 📸 Project Previews
+
+<p align="center">
+  <img src="1.jpg" width="400" alt="MERN E-Commerce">
+  <img src="2.jpg" width="400" alt="Movie Club App">
+  <img src="3.png" width="400" alt="Weather Dashboard">
+</p>
 
 ## 🛠️ Built With
 
@@ -16,4 +21,3 @@ A modern, responsive portfolio website built with HTML5, CSS3, and JavaScript.
 - Responsive Design (Desktop/Mobile)
 - Interactive Project Showcase
 - Reveal-on-scroll animations
->>>>>>> 589dd65 (Initial portfolio upload with images and README)
