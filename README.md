@@ -5,9 +5,9 @@ A modern, responsive portfolio website built with HTML5, CSS3, and JavaScript.
 ## 📸 Project Previews
 
 <p align="center">
-  <img src="images/1.png" width="400" alt="MERN E-Commerce">
-  <img src="images/2.png" width="400" alt="Movie Club App">
-  <img src="images/3.png" width="400" alt="Weather Dashboard">
+  <img src="./images/1.png" width="400" alt="MERN E-Commerce">
+  <img src="./images/2.png" width="400" alt="Movie Club App">
+  <img src="./images/3.png" width="400" alt="Weather Dashboard">
 </p>
 
 ## 🛠️ Built With
